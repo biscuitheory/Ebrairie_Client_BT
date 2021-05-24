@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <>
-      <h1>Register Page</h1>
+      <h1>Login Page</h1>
       <form
         onSubmit={handleSubmit}
         style={{

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import api from './utils/api';
+import { AuthRoute } from './components/common/authRoute';
 
 import Layout from './components/Layout/layout';
 import Home from './pages/home';
@@ -23,7 +24,7 @@ const App = () => {
 
     try {
       const result = await api.get('/admin/me');
-      dispatch({ type: ' USER_SET', payload: result.data });
+      dispatch({ type: 'USER_SET', payload: result.data });
     } catch (error) {
       console.error(error);
       dispatch({ type: 'USER_RESET' });
@@ -43,12 +44,12 @@ const App = () => {
       <Switch>
         <Layout>
           <Route exact path="/" component={Home} />
-          <Route exact path="/resources" component={Resources} />
-          <Route exact path="/resource" component={Resource} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/resource" component={Resource} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/loans" component={Loans} />
+          <AuthRoute eaxct path="/dashboard" component={Dashboard} />
+          <AuthRoute exact path="/loans" component={Loans} />
         </Layout>
       </Switch>
     </Router>
