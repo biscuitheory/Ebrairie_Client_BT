@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const useAuth = () => {
-  const auth = useSelector((state) => state.auth.values);
+  const auth = useSelector((state) => state.auth.user);
   console.log('auth', auth);
   return auth !== null;
 };

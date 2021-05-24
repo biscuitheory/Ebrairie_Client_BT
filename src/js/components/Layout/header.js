@@ -6,7 +6,7 @@ const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const title = useSelector((state) => state.app.name);
-  const user = useSelector((state) => state.auth.values);
+  const user = useSelector((state) => state.auth.user);
 
   const Logout = (event) => {
     event.preventDefault();

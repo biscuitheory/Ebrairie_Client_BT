@@ -23,8 +23,10 @@ const App = () => {
     dispatch({ type: 'USER_FETCH' });
 
     try {
-      const result = await api.get('/admin/me');
-      dispatch({ type: 'USER_SET', payload: result.data });
+      const userResult = await api.get('/admin/me');
+      dispatch({ type: 'USER_SET', payload: userResult.data });
+      const resourcesResult = await api.get('/resources');
+      dispatch({ type: 'RESOURCES_SET', payload: resourcesResult.data });
     } catch (error) {
       console.error(error);
       dispatch({ type: 'USER_RESET' });

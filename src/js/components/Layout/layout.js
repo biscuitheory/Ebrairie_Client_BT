@@ -5,7 +5,7 @@ import Header from './header';
 import LoggedNav from './LoggedNav';
 
 const Layout = ({ children }) => {
-  const user = useSelector((state) => state.auth.values);
+  const user = useSelector((state) => state.auth.user);
   return (
     <>
       <Header />
