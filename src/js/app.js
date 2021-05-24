@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import api from './utils/api';
+
 import Layout from './components/Layout/layout';
 import Home from './pages/home';
 import Register from './pages/register';
@@ -15,12 +17,19 @@ const App = () => {
   const dispatch = useDispatch();
   const appState = useSelector((state) => state.app);
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch({ type: 'APP_INIT' });
+    dispatch({ type: 'USER_FETCH' });
 
-    setTimeout(() => {
-      dispatch({ type: 'APP_READY' });
-    }, 2000);
+    try {
+      const result = await api.get('/admin/me');
+      dispatch({ type: ' USER_SET', payload: result.data });
+    } catch (error) {
+      console.error(error);
+      dispatch({ type: 'USER_RESET' });
+    }
+
+    dispatch({ type: 'APP_READY' });
   }, []);
 
   console.log('APP global state : ', appState);
@@ -35,7 +44,7 @@ const App = () => {
         <Layout>
           <Route exact path="/" component={Home} />
           <Route exact path="/resources" component={Resources} />
-          <Route exact path="/resources" component={Resource} />
+          <Route exact path="/resource" component={Resource} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route exact path="/dashboard" component={Dashboard} />
