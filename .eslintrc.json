@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
+  "env": {
+  "commonjs": true,
+  "jest": true,
+  "es6": true
+  },
+  "plugins": [
+    "babel",
+    "react",
+    "jest"
+  ]
+}
