@@ -6,6 +6,8 @@ import api from '../utils/api';
 import InputGroup from '../components/inputgroup';
 import Button from '../components/button';
 
+export const validatePwdInput = (str = '') => str.length >= 8;
+
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,8 +35,8 @@ const Login = () => {
         history.push('/dashboard');
       }
     } catch (error) {
-      console.error(error.message);
       dispatch({ type: 'USER_RESET' });
+      console.error(error.message);
     }
   };
 
@@ -50,9 +52,24 @@ const Login = () => {
           width: '50%',
         }}
       >
-        <InputGroup type="text" name="email" value={handleChange} />
-        <InputGroup type="text" name="password" value={handleChange} />
-        <Button name="Register" />
+        <InputGroup
+          type="email"
+          name="email"
+          title="Email"
+          value={handleChange}
+        />
+        <InputGroup
+          type="password"
+          name="password"
+          title="Password"
+          value={handleChange}
+        />
+        {password && !validatePwdInput(password) ? (
+          <p style={{ color: 'red' }}>
+            Password must contain at least 8 characters
+          </p>
+        ) : null}
+        <Button name="Login" />
       </form>
     </>
   );

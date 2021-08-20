@@ -7,6 +7,8 @@ import Button from '../components/button';
 
 const role = process.env.REACT_APP_ROLE;
 
+export const validatePwdInput = (str = '') => str.length >= 8;
+
 const Register = () => {
   const history = useHistory();
 
@@ -57,10 +59,13 @@ const Register = () => {
           width: '50%',
         }}
       >
-        <InputGroup type="text" name="firstname" value={handleChange} />
-        <InputGroup type="text" name="lastname" value={handleChange} />
-        <InputGroup type="text" name="email" value={handleChange} />
-        <InputGroup type="text" name="password" value={handleChange} />
+        <InputGroup type="text" name="firstname" title="Firstname" value={handleChange} />
+        <InputGroup type="text" name="lastname" title="Lastname" value={handleChange} />
+        <InputGroup type="email" name="email" title="Email" value={handleChange} />
+        <InputGroup type="password" name="password" title="Password" value={handleChange} />
+        {email && !validatePwdInput(password)
+          ? <p style={{color:'red'}}>Password must contain at least 8 characters</p>
+          : null}
         <Button name="Register" />
       </form>
     </>

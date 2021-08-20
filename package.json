@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
     "dev": "./node_modules/parcel-bundler/bin/cli.js ./src/index.html"
