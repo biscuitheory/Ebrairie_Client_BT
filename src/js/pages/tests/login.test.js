@@ -1,9 +1,21 @@
 import React from 'react';
 import { expect } from '@jest/globals';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { Provider, createStore, combineReducers } from 'react-redux';
 
-import InputGroup from '../../components/inputgroup';
+import Login from '../login';
 import { validatePwdInput } from '../login';
+import InputGroup from '../../components/inputgroup';
+
+function createTestStore() {
+  const store = createStore(
+    combineReducers({
+      user: userReducer,
+      config: configReducer,
+    })
+  );
+  return store;
+}
 
 describe('Login form input and label rendering ', () => {
   test('email field should have corresponding label', () => {
@@ -65,12 +77,28 @@ describe('Login form user interactions ', () => {
   });
 });
 
+let store;
 describe('Login form submission ', () => {
-  test('If filled correctly, Login form Button on click sends form request to server ', () => {
+  beforeEach(() => {
+    store = createTestStore();
+  });
 
-  })
+  test.todo(
+    'If filled correctly, Login form Button on click sends form request to server '
+  );
+  // test('If filled correctly, Login form Button on click sends form request to server ', () => {
+  //   const handleSubmit = jest.fn();
+  //   const { getByRole } = render(
+  //     <Provider store={store}>
+  //       <Login onSubmit={handleSubmit} />
+  //     </Provider>
+  //   );
+  //   const buttonNode = getByRole('button');
+  //   fireEvent.submit(buttonNode);
+  //   expect(handleSubmit).toHaveBeenCalledTimes(1);
+  // });
 
-  test('If not filled correctly, Login form Button on click error messages display ', () => {
-    
-  })
-};
+  test.todo(
+    'If not filled correctly, Login form Button on click error messages display '
+  );
+});
