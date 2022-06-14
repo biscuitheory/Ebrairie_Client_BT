@@ -1,21 +1,22 @@
 import React from 'react';
 import { expect } from '@jest/globals';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { Provider, createStore, combineReducers } from 'react-redux';
+//import { Provider, createStore, combineReducers } from 'react-redux';
 
-import Login from '../login';
+//import Login from '../login';
 import { validatePwdInput } from '../login';
 import InputGroup from '../../components/inputgroup';
 
-function createTestStore() {
-  const store = createStore(
-    combineReducers({
-      user: userReducer,
-      config: configReducer,
-    })
-  );
-  return store;
-}
+
+// function createTestStore() {
+//   const rootReducer = combineReducers({
+//     app: initialStateReducer,
+//     auth: authReducer,
+//     resources: resourcesReducer,
+//   });
+//   const store = createStore(rootReducer);
+//   return store;
+// }
 
 describe('Login form input and label rendering ', () => {
   test('email field should have corresponding label', () => {
@@ -77,28 +78,28 @@ describe('Login form user interactions ', () => {
   });
 });
 
-let store;
-describe('Login form submission ', () => {
-  beforeEach(() => {
-    store = createTestStore();
-  });
+// let store;
+// describe('Login form submission ', () => {
+//   beforeEach(() => {
+//     store = createTestStore();
+//   });
 
-  test.todo(
-    'If filled correctly, Login form Button on click sends form request to server '
-  );
-  // test('If filled correctly, Login form Button on click sends form request to server ', () => {
-  //   const handleSubmit = jest.fn();
-  //   const { getByRole } = render(
-  //     <Provider store={store}>
-  //       <Login onSubmit={handleSubmit} />
-  //     </Provider>
-  //   );
-  //   const buttonNode = getByRole('button');
-  //   fireEvent.submit(buttonNode);
-  //   expect(handleSubmit).toHaveBeenCalledTimes(1);
-  // });
+//   // test.todo(
+//   //   'If filled correctly, Login form Button on click sends form request to server '
+//   // );
+//   // test('If filled correctly, Login form Button on click sends form request to server ', () => {
+//   //   const handleSubmit = jest.fn();
+//   //   const { getByRole } = render(
+//   //     <Provider store={store}>
+//   //       <Login onSubmit={handleSubmit} />
+//   //     </Provider>
+//   //   );
+//   //   const buttonNode = getByRole('button');
+//   //   fireEvent.submit(buttonNode);
+//   //   expect(handleSubmit).toHaveBeenCalledTimes(1);
+//   // });
 
-  test.todo(
-    'If not filled correctly, Login form Button on click error messages display '
-  );
-});
+//   test.todo(
+//     'If not filled correctly, Login form Button on click error messages display '
+//   );
+// });
